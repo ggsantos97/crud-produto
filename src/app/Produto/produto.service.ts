@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Produto } from './produto';
 
@@ -14,14 +16,14 @@ API = `${environment.API}/produtos`;
   }
 
   salvarProduto(produto: Produto, ): Observable<Produto> {
-     return this.http.post<Produto>(`${this.API}`, produto);
+     return this.httpClient.post<Produto>(`${this.API}`, produto);
   }
 
   editarProduto(produto: Produto): Observable<Produto> {
-    return this.http.put<Produto>(`${this.API}/${produto.id}`, produto);
+    return this.httpClient.put<Produto>(`${this.API}/${produto.id}`, produto);
   }
 
- excluirProduto(idProduto: number): Observable {
-  return this.http.delete(`${this.API}/${idProduto}`);
+ excluirProduto(idProduto: number) {
+  return this.httpClient.delete(`${this.API}/${idProduto}`);
   }
 }

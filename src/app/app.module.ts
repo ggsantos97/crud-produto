@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ListagemProdutoComponent } from './Produto/listagem-produto/listagem-produto.component';
 import { EditaProdutoComponent } from './Produto/edita-produto/edita-produto.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
