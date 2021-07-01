@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "crud-produto"
+  "defaultProject": "crud-produto",
+  "cli": {
+    "analytics": false
+  }
 }
