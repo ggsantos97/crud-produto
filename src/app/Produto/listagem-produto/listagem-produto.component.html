@@ -1,2 +1,23 @@
-<p>listagem-produto works!</p>
-<p *ngFor="let item of produtos">{{item | json}}</p>
+<button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+<table  mat-table [dataSource]="produtos" class="mat-elevation-z8"> 
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let produto"> {{produto.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let produto"> {{produto.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let produto"> {{produto.id}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunasTabela;"></tr>
+</table>
+

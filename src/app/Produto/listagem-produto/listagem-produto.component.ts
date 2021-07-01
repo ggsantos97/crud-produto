@@ -11,6 +11,7 @@ export class ListagemProdutoComponent implements OnInit {
 
   constructor(private service: ProdutoService) { }
   produtos: Produto[] = [];
+  colunasTabela: string[] = ['id', 'nome', 'valor'];
   ngOnInit(): void {
     this.buscarProdutos();
   }
