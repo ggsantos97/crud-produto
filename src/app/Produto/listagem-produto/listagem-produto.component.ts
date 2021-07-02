@@ -5,7 +5,7 @@ import { AddProdutoComponent } from '../add-produto/add-produto.component';
 import { EditaProdutoComponent } from '../edita-produto/edita-produto.component';
 import { Produto } from '../produto';
 import { ProdutoService } from '../produto.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-listagem-produto',
   templateUrl: './listagem-produto.component.html',
@@ -55,6 +55,24 @@ export class ListagemProdutoComponent implements OnInit {
       }
     });
 }
+
+abrirModalConfirmacaoExclusao(produto:Produto){
+
+    Swal.fire({
+      title: `Excluir Produto`,
+      html: `Você deseja realmente excluir o Produto <b>${produto.nome}</b> ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.excluirProduto(produto.id);
+      }
+    });
+  }
 
    excluirProduto(idProduto: number){
         this.service.excluirProduto(idProduto).subscribe(data => {
