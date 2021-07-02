@@ -12,17 +12,25 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddProdutoComponent } from './Produto/add-produto/add-produto.component';
+import { NgxMaskModule } from 'ngx-mask';
+
 @NgModule({
   declarations: [
     AppComponent,
     ListagemProdutoComponent,
     EditaProdutoComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    AddProdutoComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
@@ -30,7 +38,11 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    NgxMaskModule.forRoot(),
   ],
+  entryComponents:[],
   providers: [],
   bootstrap: [AppComponent]
 })

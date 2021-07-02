@@ -1,0 +1,15 @@
+<h4>Adicionar um novo Produto</h4>
+<form class="example-form" [formGroup]="formProduto" (ngSubmit)="salvarProduto()">
+  
+    <mat-form-field class="col-12" appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Ex. Televisão" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field class="" appearance="fill">
+        <mat-label>Valor</mat-label>
+        <input matInput placeholder="" formControlName="valor">
+    </mat-form-field>
+
+    <button mat-button color="primary" class="mb-2" type="submit" [disabled]="formProduto.invalid" >Salvar</button>
+  </form>

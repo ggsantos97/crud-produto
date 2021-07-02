@@ -1,1 +1,21 @@
-<p>edita-produto works!</p>
+<h4>Alteração de Produto</h4>
+<form class="example-form" [formGroup]="formProdutoEdicao" (ngSubmit)="salvaAlteracoes()">
+    <div class="row">
+        <mat-form-field class="col-12" appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Ex. Televisão" formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field class="col 12" appearance="fill">
+            <mat-label>Valor</mat-label>
+            <input matInput placeholder=""  formControlName="valor">
+          </mat-form-field>
+    </div>
+
+
+      <div  class="row">
+          <button mat-button color="primary" class="col-6" type="button" (click)="limparForm()">Limpar</button>
+          <button mat-button color="primary" class="col-6" type="submit" [disabled]="formProdutoEdicao.invalid">Salvar</button>
+      </div>
+  </form>
+

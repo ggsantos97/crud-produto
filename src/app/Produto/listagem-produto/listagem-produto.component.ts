@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddProdutoComponent } from '../add-produto/add-produto.component';
+import { EditaProdutoComponent } from '../edita-produto/edita-produto.component';
 import { Produto } from '../produto';
 import { ProdutoService } from '../produto.service';
 
@@ -9,9 +13,11 @@ import { ProdutoService } from '../produto.service';
 })
 export class ListagemProdutoComponent implements OnInit {
 
-  constructor(private service: ProdutoService) { }
+  constructor(private service: ProdutoService,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) { }
   produtos: Produto[] = [];
-  colunasTabela: string[] = ['id', 'nome', 'valor'];
+  colunasTabela: string[] = ['id', 'nome', 'valor', 'acoes'];
   ngOnInit(): void {
     this.buscarProdutos();
   }
@@ -20,8 +26,47 @@ export class ListagemProdutoComponent implements OnInit {
     this.service.buscarTodosProdutos().subscribe(data => {
       this.produtos = data;
     }, erro => {
-      alert(erro);
+      this.snackBar.open('Erro ao Buscar Produtos', 'Fechar', {
+        duration: 5000,
+
+      });
     })
   }
+
+  abrirModalAddProduto(){
+      this.dialog.open(AddProdutoComponent, {
+        width: '300px',
+        height: '350px'
+      }).afterClosed().subscribe(result => {
+        if(result){
+            this.buscarProdutos();
+        }
+      });
+  }
+
+  abrirModalEditarProduto(produto: Produto){
+    this.dialog.open(EditaProdutoComponent, {
+      width: '300px',
+      height: '350px',
+      data: produto
+    }).afterClosed().subscribe(result => {
+      if(result){
+          this.buscarProdutos();
+      }
+    });
+}
+
+   excluirProduto(idProduto: number){
+        this.service.excluirProduto(idProduto).subscribe(data => {
+          this.snackBar.open('Produto Excluido com sucesso!', null, 
+          {duration: 5000
+          });
+          this.buscarProdutos();
+        }, error => {
+          this.snackBar.open('Erro ao tentar excluir o produto', null, 
+          {duration: 5000
+          });
+        });
+   }  
 
 }
